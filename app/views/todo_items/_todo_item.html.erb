@@ -1,0 +1,43 @@
+
+<div class="row clearfix">
+	<%if todo_item.complete?%>
+	<%if current_user == @todo_list.user%>
+		<div class="complete">
+			<%= link_to complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do%>
+			<i style="opacity: 0.4;" class="fa fa-check"></i>
+			<%end%>
+		</div>
+		<%end%>
+		<div class="todo_item">
+			<p style="opacity: 0.4;"><strike><%=todo_item.content%></strike></p>
+		</div>
+		<%if current_user == @todo_list.user%>
+		<div class="trash">
+				<%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data:{confirm: "are you sure?"} do%>
+				<i class="fa fa-trash"></i>
+				<%end%>
+			
+		</div>
+		<%end%>
+		<%else%>
+		<%if current_user == @todo_list.user%>
+		<div class="complete">
+			<%= link_to complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do%>
+			<i class="fa fa-check"></i>
+			<%end%>
+		</div>
+		<%end%>
+		<div class="todo_item">
+			<p><%=todo_item.content%></p>
+		</div>
+		<%if current_user == @todo_list.user%>
+		<div class="trash">
+			
+				<%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data:{confirm: "are you sure?"} do%>
+				<i class="fa fa-trash"></i>
+				<%end%>
+			
+		</div>
+		<%end%>
+	<%end%>
+</div>
